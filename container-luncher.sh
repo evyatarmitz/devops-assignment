@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "HI"
+echo starting luncher script
+docker-compose up -d
