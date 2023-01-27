@@ -4,5 +4,7 @@ FROM jenkins/jenkins:2.303.2
 ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false"
 
 # install plugins
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN jenkins-plugin-cli --clean-download-directory --list --view-security-warnings -f /usr/share/jenkins/ref/plugins.txt
+# copy the list of plugins we want to install
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+# run the install-plugins script to install the plugins
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
